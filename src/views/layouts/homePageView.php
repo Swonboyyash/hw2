@@ -47,7 +47,7 @@ class homePageView extends mainView {
 		<div class="wrapper">
 			<h2>Search</h2>
 			<form class="form-inline" action="homePage.php?action=search" method="post">
-				<div class="form-group" style="display:block">
+				<div class="form-group">
 					<label>Filter</label>
 					<select name="filter">
 						<option value="movies">Movie</option>
@@ -59,7 +59,7 @@ class homePageView extends mainView {
 					<label>Search</label>
 					<input type="text" name="userInput" maxlength="70" class="form-control">
 				</div>
-				<button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+				<button type="submit" class="btn btn-primary mb-2">Search</button>
 			</form>
 		</div>
 		<?php

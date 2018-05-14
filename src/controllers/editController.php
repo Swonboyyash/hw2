@@ -1,14 +1,13 @@
 <?php
 
-require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/views/layouts/profileView.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/views/layouts/editView.php";
 
-class profileController {
+class editController {
 
     private $authModel;
     function __construct() {
 
-        $this->authModel = new profileView();
-
+        $this->authModel = new editView();
     }
 
     function redirectToHomePage() {

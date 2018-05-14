@@ -45,11 +45,12 @@ class mainView
                         <li><a href="http://localhost/hw2/homePage.php?action=search&filter=movies"> Movies </a></li>
                         <li><a href="http://localhost/hw2/homePage.php?action=search&filter=tvshows"> Tv Shows </a></li>
                         <li><a href="http://localhost/hw2/homePage.php?action=search&filter=actors"> Actors </a></li>
+                        <li><a href="/hw2/analytics.php">Analytics</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" action=logout.php>
+                    <form class="navbar-form navbar-right" action="logout.php">
                         <button type="submit" value="logout" name="action" class="btn btn-default"> Logout </button>
                     </form>
-                    <form class="navbar-form navbar-right" action=profile.php>
+                    <form class="navbar-form navbar-right" action="homePage.php?action=profile">
                         <button type="submit" value="profile" name="action" class="btn btn-default"> Edit Profile </button>
                     </form>
                 </div>

@@ -4,14 +4,15 @@ session_start();
 require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/homePageController.php";
 require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/searchController.php";
 require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/profileController.php";
-require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/landingController.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/editController.php";
+require_once "/Applications/XAMPP/xamppfiles/htdocs/hw2/src/controllers/submitchangesController.php";
 
 if(isset($_SESSION['userprofile'])) {
     $activity = (isset($_REQUEST['action']) && in_array($_REQUEST['action'],
-                    ["search", "edit", "details"])) ? $_REQUEST['action'] . "Controller" : "homePageController";
+    ["search", "profile", "details", "edit", "submitchanges"])) ? $_REQUEST['action'] . "Controller" : "homePageController";
     if ($activity == 'homePageController') {
         if(isset($_REQUEST['movieId'])) {
-            new landingController();
+            new homePageController();
         } else {
             new homePageController();
         }
@@ -27,6 +28,11 @@ if(isset($_SESSION['userprofile'])) {
         new example();
     } else if ($activity == 'profileController') {
         new profileController();
+    } else if ($activity == 'editController') {
+        new editController();
+    } else if ($activity == 'submitchangesController') {
+        $userObject = $_SESSION['userprofile'];
+        new submitchangesController($userObject['faveactor'], $userObject['favegenre'], $userObject['favetvshow'], $userObject['favemovie'], $userObject['userId']);
     }
 
 } else {
