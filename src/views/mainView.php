@@ -58,6 +58,31 @@ class mainView
         </nav>
         <?php
     }
+
+    function renderSearchBody($select = "movies") {
+        $userInput = (isset($_REQUEST['userInput'])) ? $_REQUEST['userInput'] : "";
+		?>
+		<div class="wrapper" style="width:auto; display:inline-block;">
+			<form class="form-inline" action="homePage.php?action=search" method="post">
+				<div class="form-group">
+					<label>Filter</label>
+					<select name="filter">
+                        <?php
+    						if ($select == "movies") { echo "<option value='movies' selected>Movie</option>"; } else { echo "<option value='movies'>Movie</option>"; }
+    						if ($select == "tvshows") { echo "<option value='tvshows' selected>TV Show</option>"; } else { echo "<option value='tvshows'>TV Show</option>"; }
+    						if ($select == "actors") {echo "<option value='actors' selected>Actor</option>"; } else { echo "<option value='actors'>Actor</option>"; }
+                        ?>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" name="userInput" value="<?= $userInput ?>" maxlength="70" class="form-control">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary mb-2">Search</button>
+				</div>
+			</form>
+		</div><?php
+	}
 }
 
 ?>

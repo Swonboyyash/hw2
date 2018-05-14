@@ -7,7 +7,9 @@ class homePageView extends mainView {
 	function __construct()
 	{
 		$this->renderHeader();
-		$this->renderBody();
+		$this->renderNavigationBar();
+		?> <div class="container-fluid"> <h2>Search</h2> </div> <?php
+		$this->renderSearchBody();
 		$this->renderFooter();
 	}
 
@@ -39,31 +41,5 @@ class homePageView extends mainView {
 	// 		echo "</table>";
 	// 		echo "</html>";
 	// 		}
-
-	function renderBody() {
-		$this->renderNavigationBar();
-		?>
-
-		<div class="wrapper">
-			<h2>Search</h2>
-			<form class="form-inline" action="homePage.php?action=search" method="post">
-				<div class="form-group">
-					<label>Filter</label>
-					<select name="filter">
-						<option value="movies">Movie</option>
-						<option value="tvshows">TV Show</option>
-						<option value="actors">Actor</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label>Search</label>
-					<input type="text" name="userInput" maxlength="70" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-primary mb-2">Search</button>
-			</form>
-		</div>
-		<?php
-	}
 }
-
 ?>

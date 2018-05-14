@@ -9,6 +9,7 @@ class searchView extends mainView
     function __construct($resultSet, $view) {
         $this->userObject = $_SESSION['userprofile'];
         $this->renderHeader();
+        $this->renderNavigationBar();
         if ($view == "movies") {
             $this->renderBodyMovies($resultSet);
         } else if ($view == "tvshows") {
@@ -27,23 +28,23 @@ class searchView extends mainView
                     <h1>Hello <? print_r($this->userObject['firstName']. ", ". $this->userObject['lastName']) ?></h1>
                     <p> Here is the list for all the movies.
                         You can click on View Details to get further information for a Movie. </p>
-                    </div>
-
-                    <div class="row">
-                        <?php foreach($movies as $a_movie) { ?>
-                            <div class="col-xs-6 col-lg-4">
-                                <form action="homePage.php" method="post">
-                                    <h2> <? echo $a_movie->getTitle(); ?> </h2>
-                                    <h5> <strong> Released: </strong> <? echo $a_movie->getYear()?> </h5>
-                                    <h5> <strong> Directed By: </strong> <? echo $a_movie->getDirectorFullName()?> </h5>
-                                    <p><button class="btn btn-default" type="submit">View details</button></p>
-                                    <input type="hidden" name="movieId" value=<?=$a_movie->jsonSerialize(); ?>></input>
-                                </form>
-                            </div>
-                        <?php } ?>
-                    </div>
                 </div>
-            </div> <?php
+                <?php $this->renderSearchBody("movies"); ?>
+                <div class="row">
+                    <?php foreach($movies as $a_movie) { ?>
+                        <div class="col-xs-6 col-lg-4">
+                            <form action="homePage.php" method="post">
+                                <h2> <? echo $a_movie->getTitle(); ?> </h2>
+                                <h5> <strong> Released: </strong> <? echo $a_movie->getYear()?> </h5>
+                                <h5> <strong> Directed By: </strong> <? echo $a_movie->getDirectorFullName()?> </h5>
+                                <p><button class="btn btn-default" type="submit">View details</button></p>
+                                <input type="hidden" name="movieId" value=<?=$a_movie->jsonSerialize(); ?>></input>
+                            </form>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div> <?php
     }
 
     function renderBodyTvShows($tvShows) {
@@ -55,7 +56,7 @@ class searchView extends mainView
                     <p> Here is the list for all the TV Shows.
                         You can click on View Details to get further information for a TV Show. </p>
                     </div>
-
+                    <?php $this->renderSearchBody("tvshows"); ?>
                     <div class="row">
                         <?php foreach($tvShows as $tvShow) { ?>
                             <div class="col-xs-6 col-lg-4">
@@ -81,7 +82,7 @@ class searchView extends mainView
                     <h1>Hello <? print_r($this->userObject['firstName']. ", ". $this->userObject['lastName']) ?></h1>
                     <p> Here is the list for all the Actors. </p>
                 </div>
-
+                <?php $this->renderSearchBody("actors"); ?>
                 <div class="row">
                     <?php foreach($actors as $actor) { ?>
                         <div class="col-xs-6 col-lg-4">
